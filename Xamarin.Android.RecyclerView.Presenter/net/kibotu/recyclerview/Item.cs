@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace com.exozet.recyclerview
+namespace net.kibotu.recyclerview
 {
     public class Item<T>
     {

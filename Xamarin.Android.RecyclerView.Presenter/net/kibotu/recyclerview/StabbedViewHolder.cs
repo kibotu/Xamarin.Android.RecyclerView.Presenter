@@ -2,7 +2,7 @@
 using Android.Views;
 using CheeseBind;
 
-namespace com.exozet.recyclerview
+namespace net.kibotu.recyclerview
 {
     public class StabbedViewHolder : RecyclerView.ViewHolder, IViewHolder
     {

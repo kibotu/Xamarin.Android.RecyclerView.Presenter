@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Java.Util;
 
-namespace com.exozet.recyclerview
+namespace net.kibotu.recyclerview
 {
     public class PresenterAdapter<T> : RecyclerView.Adapter
     {

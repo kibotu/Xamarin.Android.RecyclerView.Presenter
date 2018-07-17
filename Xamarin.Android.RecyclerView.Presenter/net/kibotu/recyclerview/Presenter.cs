@@ -3,7 +3,7 @@ using Android.Support.V7.Widget;
 using Android.Support.Annotation;
 using Android.Views;
 
-namespace com.exozet.recyclerview
+namespace net.kibotu.recyclerview
 {
     public abstract class Presenter<T, VH> : IPresenter where VH : RecyclerView.ViewHolder
     {

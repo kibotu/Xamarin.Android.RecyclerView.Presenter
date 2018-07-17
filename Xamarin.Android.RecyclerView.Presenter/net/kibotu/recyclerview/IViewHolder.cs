@@ -1,4 +1,4 @@
-﻿namespace com.exozet.recyclerview
+﻿namespace net.kibotu.recyclerview
 {
     public interface IViewHolder
     {

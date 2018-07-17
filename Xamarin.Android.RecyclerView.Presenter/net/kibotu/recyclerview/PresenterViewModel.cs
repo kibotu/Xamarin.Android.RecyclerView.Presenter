@@ -1,5 +1,5 @@
 ﻿using System;
-namespace com.exozet.recyclerview
+namespace net.kibotu.recyclerview
 {
     public class PresenterViewModel<T>
     {
