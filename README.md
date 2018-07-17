@@ -1,4 +1,4 @@
-# Xamarin.Android.RecyclerView.Presenter [![BuildVersion](https://buildstats.info/nuget/Xamarin.Android.RecyclerView.Presenter)](https://www.nuget.org/packages/Xamarin.Android.RecyclerView.Presenter/)
+# Xamarin.Android.RecyclerView.Presenter [![Build Status](https://app.bitrise.io/app/ba0cf03aee45e6e0/status.svg?token=bWmS491VrL3ZzXi17yaNdA&branch=master)](https://app.bitrise.io/app/ba0cf03aee45e6e0) [![BuildVersion](https://buildstats.info/nuget/Xamarin.Android.RecyclerView.Presenter)](https://www.nuget.org/packages/Xamarin.Android.RecyclerView.Presenter/)
 
 Re-implmentation of https://github.com/kibotu/RecyclerViewPresenter to Xamarin.
 
