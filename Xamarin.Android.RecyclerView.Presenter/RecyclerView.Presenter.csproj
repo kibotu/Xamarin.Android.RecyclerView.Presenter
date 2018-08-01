@@ -92,6 +92,7 @@
     <Compile Include="net\kibotu\recyclerview\PresenterAdapter.cs" />
     <Compile Include="net\kibotu\recyclerview\PresenterViewModel.cs" />
     <Compile Include="net\kibotu\recyclerview\StabbedViewHolder.cs" />
+    <Compile Include="net\kibotu\recyclerview\OnItemClickListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
