@@ -17,13 +17,14 @@
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Xamarin.Android.RecyclerView.Presenter</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>kibotu</Authors>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/kibotu/Xamarin.Android.RecyclerView.Presenter/blob/master/LICENSE</PackageLicenseUrl>
     <Owners>kibotu</Owners>
     <PackageProjectUrl>https://github.com/kibotu/Xamarin.Android.RecyclerView.Presenter</PackageProjectUrl>
-    <PackageReleaseNotes>1.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>1.0.1
+- added OnItemClickListener</PackageReleaseNotes>
     <Summary>Convenience library to handle different view types with different presenters in a single RecyclerView.</Summary>
     <PackageTags>Xamarin.Android.RecyclerViewPresenter</PackageTags>
     <Title>Xamarin.Android.RecyclerView.Presenter</Title>
