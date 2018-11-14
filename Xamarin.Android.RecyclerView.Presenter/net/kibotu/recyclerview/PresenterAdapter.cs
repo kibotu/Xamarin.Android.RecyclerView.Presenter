@@ -11,9 +11,9 @@ namespace net.kibotu.recyclerview
     {
         public List<Item<T>> Data;
 
-        protected IEnumerable<dynamic> Presenter;
+        protected List<dynamic> Presenter;
 
-        protected RecyclerView RecyclerView { get; set; }
+        protected WeakReference<RecyclerView> RecyclerView { get; set; }
 
         public bool Debug { get; set; } = false;
 
@@ -29,7 +29,8 @@ namespace net.kibotu.recyclerview
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) => PresenterByViewType(viewType).OnCreateViewHolder(parent);
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        {
             (holder as IViewHolder)?.OnBindViewHolder();
             PresenterAt(position).BindViewHolderInternal(holder, Model(position), position);
         }
@@ -40,13 +41,13 @@ namespace net.kibotu.recyclerview
 
         public void Add<P>(T t) where P : IPresenter
         {
-            Data.Add(new Item<T> { Model = t, PresenterType = typeof(P) });
+            Data.Add(new Item<T> {Model = t, PresenterType = typeof(P)});
             AddIfNotExists<P>();
         }
 
         public void Insert<P>(int index, T t, bool notify = false) where P : IPresenter
         {
-            Data.Insert(index, new Item<T> { Model = t, PresenterType = typeof(P) });
+            Data.Insert(index, new Item<T> {Model = t, PresenterType = typeof(P)});
             AddIfNotExists<P>();
 
             if (notify)
@@ -55,7 +56,7 @@ namespace net.kibotu.recyclerview
 
         public void Append<P>(T t, bool notify = false) where P : IPresenter
         {
-            Data.Append(new Item<T> { Model = t, PresenterType = typeof(P) });
+            Data.Append(new Item<T> {Model = t, PresenterType = typeof(P)});
             AddIfNotExists<P>();
 
             if (notify)
@@ -64,7 +65,7 @@ namespace net.kibotu.recyclerview
 
         public void Prepend<P>(T t, bool notify = false) where P : IPresenter
         {
-            Data.Prepend(new Item<T> { Model = t, PresenterType = typeof(P) });
+            Data.Prepend(new Item<T> {Model = t, PresenterType = typeof(P)});
             AddIfNotExists<P>();
 
             if (notify)
@@ -89,20 +90,20 @@ namespace net.kibotu.recyclerview
 
         protected void AddIfNotExists<P>() where P : IPresenter
         {
-            var presenter = Presenter.ToList().FirstOrDefault(p => p.GetType() == typeof(P));
+            var presenter = Presenter.FirstOrDefault(p => p.GetType() == typeof(P));
             if (presenter != null)
                 return;
 
             dynamic x = Activator.CreateInstance(typeof(P));
 
-            Presenter = Presenter.Concat(new[] { x });
+            Presenter.Add(x);
         }
 
-        public override int GetItemViewType(int position) => Presenter.ToList().FindIndex(p => p.GetType() == Data[position].PresenterType);
+        public override int GetItemViewType(int position) => Presenter.FindIndex(p => p.GetType() == Data[position].PresenterType);
 
-        protected dynamic PresenterByViewType(int viewType) => Presenter.ToList()[viewType];
+        protected dynamic PresenterByViewType(int viewType) => Presenter[viewType];
 
-        protected dynamic PresenterAt(int position) => Presenter.ToList()[GetItemViewType(position)];
+        protected dynamic PresenterAt(int position) => Presenter[GetItemViewType(position)];
 
         public void Clear()
         {
@@ -110,13 +111,16 @@ namespace net.kibotu.recyclerview
             Presenter = new List<dynamic>();
         }
 
-        public void RemoveAllViews() => RecyclerView?.RemoveAllViews();
+        public void RemoveAllViews()
+        {
+            RecyclerView list = null;
+            RecyclerView?.TryGetTarget(out list);
+            list?.RemoveAllViews();
+        }
 
-        public override void OnAttachedToRecyclerView(RecyclerView recyclerView) => RecyclerView = recyclerView;
+        public override void OnAttachedToRecyclerView(RecyclerView recyclerView) => RecyclerView = new WeakReference<RecyclerView>(recyclerView);
 
-        public override void OnDetachedFromRecyclerView(RecyclerView recyclerView) => RecyclerView = recyclerView;
-
-
+        public override void OnDetachedFromRecyclerView(RecyclerView recyclerView) => new WeakReference<RecyclerView>(recyclerView);
 
         public override bool OnFailedToRecycleView(Java.Lang.Object holder)
         {
