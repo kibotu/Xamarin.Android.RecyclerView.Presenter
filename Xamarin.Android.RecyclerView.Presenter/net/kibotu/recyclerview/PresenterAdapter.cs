@@ -1,9 +1,9 @@
 ﻿using System;
-using Android.Support.V7.Widget;
 using Android.Views;
 using System.Collections.Generic;
 using System.Linq;
 using Java.Util;
+using AndroidX.RecyclerView.Widget;
 
 namespace net.kibotu.recyclerview
 {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Android.Support.V7.Widget;
-using Android.Support.Annotation;
 using Android.Views;
+using AndroidX.Annotations;
+using AndroidX.RecyclerView.Widget;
 
 namespace net.kibotu.recyclerview
 {
